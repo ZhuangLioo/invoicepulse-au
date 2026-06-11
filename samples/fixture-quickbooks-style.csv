@@ -1,0 +1,6 @@
+Txn Date,Type,Num,Name,Email,Due Date,Amount,Open Balance,Status,Terms
+03/04/2026,Invoice,1087,Outback Freight Co,ops@outbackfreight.com.au,17/04/2026,"12,320.00","8,320.00",Open,Net 14
+15/05/2026,Invoice,1088,Metro Cafe Supplies,kim@metrocafe.com.au,29/05/2026,"1,078.00","1,078.00",Open,Net 14
+21/01/2026,Invoice,1089,Bluegum Builders,sam@bluegumbuild.com.au,04/02/2026,"23,650.00","23,650.00",Overdue,Net 14
+10/03/2026,Invoice,1090,Acme Joinery,liam@acmejoinery.com.au,24/03/2026,"5,390.00",0.00,Paid,Net 14
+28/05/2026,Invoice,1091,Coastline Cafe Pty Ltd,accounts@coastlinecafe.com.au,11/06/2026,"3,190.00","3,190.00",Open,Net 14

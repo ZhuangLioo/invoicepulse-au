@@ -1,0 +1,6 @@
+InvoiceNumber,ContactName,EmailAddress,InvoiceDate,DueDate,Total,TaxTotal,InvoiceAmountPaid,InvoiceAmountDue,Status
+INV-0042,Coastline Cafe Pty Ltd,accounts@coastlinecafe.com.au,2026-04-01,2026-04-15,4620.00,420.00,0.00,4620.00,AUTHORISED
+INV-0043,Harbour Electrical,paula@harbourelec.com.au,2026-03-10,2026-03-24,9680.00,880.00,9680.00,0.00,PAID
+INV-0044,Greenline Landscaping,,2026-05-02,2026-05-16,2915.00,265.00,1000.00,1915.00,AUTHORISED
+INV-0045,Draftwork Studio,alex@draftwork.com.au,2026-05-20,2026-06-03,3300.00,300.00,0.00,3300.00,DRAFT
+INV-0046,Sunset Trading,info@sunsettrading.com.au,2026-02-12,2026-02-26,7200.00,654.55,0.00,7200.00,AUTHORISED

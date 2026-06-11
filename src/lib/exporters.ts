@@ -1,4 +1,4 @@
-import { csvEscape, fmtDate, fmtMoney } from "./format";
+import { csvEscape, fmtDate, fmtMoney, fmtMoneyExact, toISODate } from "./format";
 import type { AnalysisResult } from "./types";
 
 export function downloadFile(name: string, content: string, type = "text/plain") {
@@ -28,7 +28,7 @@ export function buildOverdueCSV(result: AnalysisResult) {
         record.priority,
         record.invNo,
         record.customer,
-        Math.round(record.outstanding),
+        fmtMoneyExact(record.outstanding),
         fmtDate(record.due),
         record.daysOverdue,
         record.priorityRisk,
@@ -71,9 +71,18 @@ export function buildSummaryMarkdown(result: AnalysisResult) {
   markdown += `- **Total outstanding:** ${fmtMoney(metrics.totalOutstanding)} across ${metrics.active} open invoice${metrics.active !== 1 ? "s" : ""}\n`;
   markdown += `- **Overdue:** ${fmtMoney(metrics.totalOverdue)} across ${metrics.overdueCount} invoice${metrics.overdueCount !== 1 ? "s" : ""}\n`;
   markdown += `- **Average days overdue:** ${metrics.avgDaysOverdue}\n`;
+  if (metrics.weightedAgeDays !== null) {
+    markdown += `- **Weighted age of receivables:** ${metrics.weightedAgeDays} days\n`;
+  }
   markdown += `- **High-priority follow-ups:** ${metrics.critCount}\n`;
   markdown += `- **Data quality issues found:** ${metrics.issuesCount}\n\n`;
-  markdown += "## Who to follow up first\n\n";
+
+  markdown += "## Receivables aging\n\n";
+  markdown += "| Bucket | Invoices | Amount |\n|---|---:|---:|\n";
+  result.aging.forEach((bucket) => {
+    markdown += `| ${bucket.label} | ${bucket.count} | ${fmtMoney(bucket.amount)} |\n`;
+  });
+  markdown += "\n## Who to follow up first\n\n";
 
   top.forEach((record, index) => {
     markdown += `${index + 1}. **${record.customer}** - ${fmtMoney(record.outstanding)} (${record.invNo}), ${record.daysOverdue} days overdue. ${record.reasons.slice(0, 2).join(", ")}.\n`;
@@ -93,17 +102,16 @@ export function buildSummaryMarkdown(result: AnalysisResult) {
 }
 
 export function exportOverdueCSV(result: AnalysisResult) {
-  const stamp = result.asOf.toISOString().slice(0, 10);
+  const stamp = toISODate(result.asOf);
   downloadFile(`invoicepulse-overdue-${stamp}.csv`, buildOverdueCSV(result), "text/csv");
 }
 
 export function exportIssuesCSV(result: AnalysisResult) {
-  const stamp = result.asOf.toISOString().slice(0, 10);
+  const stamp = toISODate(result.asOf);
   downloadFile(`invoicepulse-data-issues-${stamp}.csv`, buildIssuesCSV(result), "text/csv");
 }
 
 export function exportSummaryMD(result: AnalysisResult) {
-  const stamp = result.asOf.toISOString().slice(0, 10);
+  const stamp = toISODate(result.asOf);
   downloadFile(`invoicepulse-weekly-summary-${stamp}.md`, buildSummaryMarkdown(result), "text/markdown");
 }
-

@@ -1,0 +1,6 @@
+Invoice No.,Co./Last Name,Addr 1 - Email,Date,Due Date,Amount,GST Amount,Amount Paid,Status,Terms of Payment
+00001234,Bayside Renovations,mark@baysidereno.com.au,18/04/2026,02/05/2026,"$16,940.00","$1,540.00",$0.00,Open,14 days
+00001235,Northern Plumbing Group,jo@northernplumb.com.au,22/05/2026,05/06/2026,"$1,375.00",$125.00,$0.00,Open,14 days
+00001236,Pixel & Co Studio,hello@pixelco.com.au,11/02/2026,25/02/2026,"$3,960.00",$360.00,"$3,960.00",Closed,14 days
+00001237,Riverside Consulting,emma@riversideconsult.com.au,30/05/2026,13/06/2026,"$7,920.00",$720.00,$0.00,Open,14 days
+00001238,Cancelled Order Co,pat@cancelled.com.au,01/05/2026,15/05/2026,"$2,200.00",$200.00,$0.00,Credit,14 days

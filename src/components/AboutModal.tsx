@@ -26,9 +26,10 @@ export function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
           <h4>What it shows</h4>
           <ul>
-            <li>Australian-aware logic: ABN checksum validation, GST reasonableness checks, AU date handling</li>
-            <li>Business-rule thinking: status-vs-due-date conflicts, duplicate detection, transparent priority scoring</li>
-            <li>End-to-end product design: from problem framing to a working, usable tool</li>
+            <li>Australian-aware logic: ABN checksum validation, GST reasonableness checks, strict day-first date handling</li>
+            <li>Business-rule thinking: receivables aging, status-vs-due-date conflicts, duplicate detection, transparent priority scoring</li>
+            <li>Weekly workflow: reminder history, tone escalation, and a what-changed summary - kept on your device only</li>
+            <li>End-to-end product design: from problem framing to a tested, documented, working tool</li>
           </ul>
           <h4>About me</h4>
           <p>

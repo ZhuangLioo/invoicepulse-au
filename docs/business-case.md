@@ -30,11 +30,12 @@ InvoicePulse AU provides a browser-based invoice health check. The user uploads 
 InvoicePulse AU turns invoice data into action:
 
 - who owes money
-- how much is overdue
+- how much is overdue, and how it ages (Current / 1-30 / 31-60 / 61-90 / 90+)
 - which invoices are highest priority
 - which customers are risky
 - what data quality issues need fixing
-- what reminder can be sent today
+- what reminder can be sent today, and what was already sent last week
+- what changed since the last check (recovered vs newly overdue)
 
 ## Why Not Build A Full Accounting Tool
 
@@ -46,5 +47,6 @@ Xero and MYOB already cover invoice creation, payment recording, and accounting 
 - A user can upload sample data and run an analysis without setup.
 - The tool correctly excludes draft, void, and cancelled invoices from receivables.
 - The top follow-up list gives a clear next action.
+- A second weekly upload is more useful than the first (carried-over reminder history and change summary).
 - The project demonstrates BA and Systems Analyst thinking through code and documentation.
 

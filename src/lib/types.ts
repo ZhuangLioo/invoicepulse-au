@@ -2,6 +2,8 @@ export type RiskLevel = "Low" | "Watch" | "High" | "Critical";
 
 export type ReminderTone = "friendly" | "firm" | "final";
 
+export type StatusClass = "active" | "paid" | "dead";
+
 export type FieldKey =
   | "invoice_number"
   | "customer_name"
@@ -42,8 +44,11 @@ export type InvoiceRecord = {
   abn: string | null;
   email: string;
   status: string;
+  statusClass: StatusClass;
   invDate: Date | null;
   due: Date | null;
+  /** True when due date was inferred from invoice date + payment terms. */
+  dueInferred: boolean;
   paidDate: Date | null;
   total: number | null;
   exgst: number | null;
@@ -85,6 +90,15 @@ export type CustomerSummary = {
   risk: RiskLevel;
 };
 
+export type AgingBucketKey = "current" | "d1_30" | "d31_60" | "d61_90" | "d90plus";
+
+export type AgingBucket = {
+  key: AgingBucketKey;
+  label: string;
+  count: number;
+  amount: number;
+};
+
 export type AnalysisMetrics = {
   total: number;
   active: number;
@@ -92,6 +106,8 @@ export type AnalysisMetrics = {
   totalOverdue: number;
   overdueCount: number;
   avgDaysOverdue: number;
+  /** Average age of open receivables in days, weighted by outstanding amount. */
+  weightedAgeDays: number | null;
   issuesCount: number;
   critCount: number;
   deadCount: number;
@@ -102,6 +118,7 @@ export type AnalysisResult = {
   records: InvoiceRecord[];
   customers: CustomerSummary[];
   actionList: InvoiceRecord[];
+  aging: AgingBucket[];
   metrics: AnalysisMetrics;
   asOf: Date;
 };
@@ -111,3 +128,28 @@ export type ReminderEmail = {
   body: string;
 };
 
+/** One reminder the user marked as sent, persisted locally per invoice. */
+export type ReminderLogEntry = {
+  tone: ReminderTone;
+  sentAt: string; // ISO date
+};
+
+export type ReminderLog = Record<string, ReminderLogEntry[]>;
+
+/** Per-invoice outstanding snapshot used for run-over-run comparison. */
+export type Snapshot = {
+  savedAt: string; // ISO date-time
+  asOf: string; // ISO date
+  totalOutstanding: number;
+  totalOverdue: number;
+  perInvoice: Record<string, number>;
+};
+
+export type SnapshotDiff = {
+  previousSavedAt: string;
+  recoveredAmount: number;
+  recoveredCount: number;
+  newOverdueAmount: number;
+  newOverdueCount: number;
+  outstandingDelta: number;
+};

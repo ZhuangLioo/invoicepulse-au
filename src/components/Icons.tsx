@@ -89,6 +89,47 @@ export const Ic = {
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
     </svg>
   ),
+  bars: (
+    <svg viewBox="0 0 24 24" {...base} strokeWidth="2">
+      <line x1="5" y1="20" x2="5" y2="14" />
+      <line x1="10" y1="20" x2="10" y2="10" />
+      <line x1="15" y1="20" x2="15" y2="6" />
+      <line x1="20" y1="20" x2="20" y2="3" />
+    </svg>
+  ),
+  clock: (
+    <svg viewBox="0 0 24 24" {...base} strokeWidth="2">
+      <circle cx="12" cy="12" r="9" />
+      <polyline points="12 7 12 12 15.5 14" />
+    </svg>
+  ),
+  trend: (
+    <svg viewBox="0 0 24 24" {...base} strokeWidth="2">
+      <polyline points="3 17 9 11 13 15 21 7" />
+      <polyline points="15 7 21 7 21 13" />
+    </svg>
+  ),
+  table: (
+    <svg viewBox="0 0 24 24" {...base} strokeWidth="1.8">
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <line x1="3" y1="9" x2="21" y2="9" />
+      <line x1="9" y1="9" x2="9" y2="20" />
+      <line x1="15" y1="9" x2="15" y2="20" />
+    </svg>
+  ),
+  ban: (
+    <svg viewBox="0 0 24 24" {...base} strokeWidth="2">
+      <circle cx="12" cy="12" r="9" />
+      <line x1="5.6" y1="5.6" x2="18.4" y2="18.4" />
+    </svg>
+  ),
+  target: (
+    <svg viewBox="0 0 24 24" {...base} strokeWidth="2">
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="12" cy="12" r="1" />
+    </svg>
+  ),
 };
 
 export function ExternalIcon({ className }: IconProps) {
